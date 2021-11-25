@@ -23,7 +23,11 @@ void main() {
   });
 
   testWithoutContext('Throws a tool exit if pub cannot be run', () async {
+<<<<<<< HEAD
+    final FakeProcessManager processManager = FakeProcessManager.any();
+=======
     final FakeProcessManager processManager = FakeProcessManager.empty();
+>>>>>>> 3595343e20a61ff16d14e8ecc25f364276bb1b8b
     final BufferLogger logger = BufferLogger.test();
     final MemoryFileSystem fileSystem = MemoryFileSystem.test();
     processManager.excludedExecutables.add('bin/cache/dart-sdk/bin/pub');
@@ -47,6 +51,8 @@ void main() {
     ), throwsToolExit(message: 'Your Flutter SDK download may be corrupt or missing permissions to run'));
   });
 
+<<<<<<< HEAD
+=======
   group('shouldSkipThirdPartyGenerator', () {
     testWithoutContext('does not skip pub get the parameter is false', () async {
       final FakeProcessManager processManager = FakeProcessManager.list(<FakeCommand>[
@@ -227,6 +233,7 @@ void main() {
     });
   });
 
+>>>>>>> 3595343e20a61ff16d14e8ecc25f364276bb1b8b
   testWithoutContext('checkUpToDate skips pub get if the package config is newer than the pubspec '
     'and the current framework version is the same as the last version', () async {
     final FakeProcessManager processManager = FakeProcessManager.empty();
@@ -968,3 +975,46 @@ class BotDetectorAlwaysNo implements BotDetector {
   @override
   Future<bool> get isRunningOnBot async => false;
 }
+<<<<<<< HEAD
+
+typedef StartCallback = void Function(List<dynamic> command);
+
+class MockProcessManager implements ProcessManager {
+  MockProcessManager(this.fakeExitCode, {
+    this.stdout = '',
+    this.stderr = '',
+  });
+
+  final int fakeExitCode;
+  final String stdout;
+  final String stderr;
+
+  String lastPubEnvironment;
+  String lastPubCache;
+
+  @override
+  Future<Process> start(
+    List<dynamic> command, {
+    String workingDirectory,
+    Map<String, String> environment,
+    bool includeParentEnvironment = true,
+    bool runInShell = false,
+    ProcessStartMode mode = ProcessStartMode.normal,
+  }) {
+    lastPubEnvironment = environment['PUB_ENVIRONMENT'];
+    lastPubCache = environment['PUB_CACHE'];
+    return Future<Process>.value(mocks.createMockProcess(
+      exitCode: fakeExitCode,
+      stdout: stdout,
+      stderr: stderr,
+    ));
+  }
+
+  @override
+  bool canRun(dynamic executable, {String workingDirectory}) => true;
+
+  @override
+  dynamic noSuchMethod(Invocation invocation) => null;
+}
+=======
+>>>>>>> 3595343e20a61ff16d14e8ecc25f364276bb1b8b

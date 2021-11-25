@@ -60,7 +60,10 @@ typedef DwdsLauncher = Future<Dwds> Function({
   bool enableDevtoolsLaunch,
   DevtoolsLauncher devtoolsLauncher,
 });
+<<<<<<< HEAD
+=======
 
+>>>>>>> 3595343e20a61ff16d14e8ecc25f364276bb1b8b
 // A minimal index for projects that do not yet support web.
 const String _kDefaultIndex = '''
 <html>
